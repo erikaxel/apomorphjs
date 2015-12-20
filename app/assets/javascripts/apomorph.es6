@@ -26,12 +26,12 @@ $(function () {
     canvas.height = window.innerHeight;
     document.body.appendChild(canvas);
 
-    var bgReady = false;
-    var bgImage = new Image();
-    bgImage.onload = function () {
-        bgReady = true;
-    };
-    bgImage.src = "assets/1up_01.png";
+    //var bgReady = false;
+    //var bgImage = new Image();
+    //bgImage.onload = function () {
+    //    bgReady = true;
+    //};
+    //bgImage.src = "assets/1up_01.png";
 
     var oneup = new Movie("1up", 10);
 

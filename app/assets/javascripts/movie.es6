@@ -8,7 +8,7 @@ class Movie {
             //bgImage.onload = function () {
             //    bgReady = true;
             //};
-            image.src = `assets/${name}_${Movie.zeropad(i+1,2)}.png`;
+            image.src = image_path(`${name}_${Movie.zeropad(i+1,2)}.png`);
             this.images.push(image);
             console.log(`loaded ${image.src}`);
             //console.log(zeropad(9,2));

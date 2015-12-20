@@ -49,3 +49,6 @@ gem 'puma'
 gem 'sprockets-es6'
 
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-howler'
+end

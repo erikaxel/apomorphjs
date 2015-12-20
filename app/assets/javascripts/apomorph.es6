@@ -39,6 +39,17 @@ $(function () {
 
     };
 
+    function fullscreen(){
+        var el = document.getElementById('canvas');
+
+        if(el.webkitRequestFullScreen) {
+            el.webkitRequestFullScreen();
+        }
+        else {
+            el.mozRequestFullScreen();
+        }
+    }
+
     var render = function () {
         //ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#000";
@@ -65,5 +76,11 @@ $(function () {
         requestAnimationFrame(main);
     };
 
+    // Use
+    // http://www.conversion-tool.com/midi
+    // To convert from midi to mp3
+    var sound = new Howl({
+        urls: [audio_path('mission1.mp3')]
+    }).play();
     main();
 });

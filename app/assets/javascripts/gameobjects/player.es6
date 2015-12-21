@@ -1,6 +1,7 @@
 class Player extends GameObject {
-    constructor() {
+    constructor(gameEngine) {
         super('Player');
+        this.gameEngine = gameEngine;
         this.sprite = GameObject.setupMovie("player-lvl1", 6);
 
         this.vx = 0;
@@ -10,11 +11,24 @@ class Player extends GameObject {
         this.SIZE_X = 100;
         this.SIZE_Y = 75;
 
-        window.addEventListener("keydown", evt => this.keyDown(evt), false);
-        window.addEventListener("keyup", evt => this.keyUp(evt), false);
+        // MS between each shot
+        this.SHOT_RATE = 100;
+        this.timeSinceLastShot = 0;
+
+        this.shipControl = ShipControl.instance;
+
+        PIXI.loader.add('shot1_01.png', image_path('shot1_01.png'));
+        PIXI.loader.add('shot2_01.png', image_path('shot2_01.png'));
     }
 
     update(timeElapsed) {
+        this.vx = this.SPEED * this.shipControl.xDirection;
+        this.vy = this.SPEED * this.shipControl.yDirection;
+
+        if(this.shipControl.firePrimary) {
+            this.fire(timeElapsed);
+        }
+
         super.update(timeElapsed);
 
         // Set up, down or normal image
@@ -40,34 +54,13 @@ class Player extends GameObject {
         }
     }
 
-    // TODO Better keyhandling
-    keyUp(event) {
-        let keyReleased = String.fromCharCode(event.keyCode);
+    fire(timeElapsed) {
+        this.timeSinceLastShot += timeElapsed;
+        if(this.timeSinceLastShot > this.SHOT_RATE) {
+            this.timeSinceLastShot = 0;
+            // TODO: Level up weapons
 
-        if ((keyReleased == "W") || (keyReleased == "S")) {
-            this.vy = 0;
-        }
-        if ((keyReleased == "A") || (keyReleased == "D")) {
-            this.vx = 0;
-        }
-    }
-
-    keyDown(event) {
-        let keyPressed = String.fromCharCode(event.keyCode);
-        if (keyPressed == "W") {
-            this.vy = - this.SPEED;
-        }
-        else if (keyPressed == "D") {
-            this.vx = this.SPEED;
-        }
-        else if (keyPressed == "S") {
-            this.vy = this.SPEED
-        }
-        else if (keyPressed == "A") {
-            this.vx = -this.SPEED;
-        } else {
-            this.vx = 0;
-            this.vy = 0;
+            this.gameEngine.addGameObject(new Shot1(this.sprite.x + this.SIZE_X/2+12, this.sprite.y+this.SIZE_Y/2));
         }
     }
 }

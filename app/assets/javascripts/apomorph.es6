@@ -1,41 +1,7 @@
 class Apomorph {
     constructor() {
-        this.setupCanvas();
-        this.gameObjects = [];
-        this.background = new BackgroundFactory();
-        // Need to add background as very first child to ensure correct Z-ordering
-        this.stage.addChild(this.background.stage);
-        PIXI.loader.load();
-        this.lastTimestamp = window.performance.now();
+        this.gameEngine = new GameEngine();
     }
-
-    setupCanvas() {
-        this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
-        document.body.appendChild(this.renderer.view);
-        this.stage = new PIXI.Container();
-    }
-
-    addGameObject(gameObject) {
-        this.gameObjects.push(gameObject);
-        this.stage.addChild(gameObject.sprite);
-    }
-
-    update(timeElapsed) {
-        for(let gameObject of this.gameObjects) {
-            gameObject.update(timeElapsed);
-        }
-        this.background.update(timeElapsed);
-    }
-
-    main() {
-        let now = window.performance.now();
-        let timeElapsed = now - this.lastTimestamp;
-        this.lastTimestamp = now;
-        this.update(timeElapsed);
-        this.renderer.render(this.stage);
-        requestAnimationFrame(() => { this.main(); });
-    }
-
     test() {
         let oneup = new OneUp();
         let player = new Player();
@@ -43,12 +9,13 @@ class Apomorph {
         oneup.sprite.position.x = 100;
         oneup.sprite.position.y = 100;
 
-        this.addGameObject(oneup);
-        this.addGameObject(player);
-        this.main();
+        this.gameEngine.addGameObject(oneup);
+        this.gameEngine.addGameObject(player);
+        this.gameEngine.main();
         // Use
         // http://www.conversion-tool.com/midi
         // To convert from midi to mp3
+        // TODO: Add to game engine
         var sound = new Howl({
             urls: [audio_path('mission1.mp3')]
         }).play();

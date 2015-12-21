@@ -1,10 +1,15 @@
 class Apomorph {
     constructor() {
-        this.setupCanvas2();
+        this.setupCanvas();
         this.gameObjects = [];
+        this.background = new BackgroundFactory();
+        // Need to add background as very first child to ensure correct Z-ordering
+        this.stage.addChild(this.background.stage);
+        PIXI.loader.load();
+        this.lastTimestamp = window.performance.now();
     }
 
-    setupCanvas2() {
+    setupCanvas() {
         this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.view);
         this.stage = new PIXI.Container();
@@ -15,15 +20,19 @@ class Apomorph {
         this.stage.addChild(gameObject.sprite);
     }
 
-    update() {
+    update(timeElapsed) {
         for(let gameObject of this.gameObjects) {
-            gameObject.update();
+            gameObject.update(timeElapsed);
         }
+        this.background.update(timeElapsed);
     }
 
     main() {
+        let now = window.performance.now();
+        let timeElapsed = now - this.lastTimestamp;
+        this.lastTimestamp = now;
+        this.update(timeElapsed);
         this.renderer.render(this.stage);
-        this.update();
         requestAnimationFrame(() => { this.main(); });
     }
 

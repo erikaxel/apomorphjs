@@ -1,11 +1,16 @@
 class GameObject {
     constructor(name) {
         this.name = name;
-        this.age = 0;
+        this.vx = 0;
+        this.vy = 0;
+        this.sprite = null;
     }
 
-    update() {
-        this.age++;
+    update(timeElapsed) {
+        if(this.sprite != 0) {
+            this.sprite.x += this.vx * timeElapsed;
+            this.sprite.y += this.vy * timeElapsed;
+        }
     }
 
     static setupMovie(basename, frames) {
@@ -16,5 +21,9 @@ class GameObject {
             textures.push(texture);
         }
         return new PIXI.extras.MovieClip(textures);
+    }
+
+    static fromLoader(name) {
+        return new PIXI.Sprite(PIXI.loader.resources[name].texture);
     }
 }

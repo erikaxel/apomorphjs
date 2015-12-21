@@ -6,12 +6,14 @@ class Player extends GameObject {
         this.vx = 0;
         this.vy = 0;
 
+        this.SPEED = 0.5;
+
         window.addEventListener("keydown", evt => this.keyDown(evt), false);
         window.addEventListener("keyup", evt => this.keyUp(evt), false);
     }
 
-    update() {
-        super.update();
+    update(timeElapsed) {
+        super.update(timeElapsed);
         //this.handleKeyboard();
         if (this.vy > 0) {
             this.sprite.gotoAndStop(0);
@@ -20,18 +22,16 @@ class Player extends GameObject {
         } else {
             this.sprite.gotoAndStop(2);
         }
-        this.sprite.x += this.vx;
-        this.sprite.y += this.vy;
     }
 
     // TODO Better keyhandling
     keyUp(event) {
-        let keyPressed = String.fromCharCode(event.keyCode);
+        let keyReleased = String.fromCharCode(event.keyCode);
 
-        if ((keyPressed == "W") || (keyPressed == "S")) {
+        if ((keyReleased == "W") || (keyReleased == "S")) {
             this.vy = 0;
         }
-        if ((keyPressed == "A") || (keyPressed == "D")) {
+        if ((keyReleased == "A") || (keyReleased == "D")) {
             this.vx = 0;
         }
     }
@@ -39,21 +39,19 @@ class Player extends GameObject {
     keyDown(event) {
         let keyPressed = String.fromCharCode(event.keyCode);
         if (keyPressed == "W") {
-            console.log('W');
-            this.vy = -5;
+            this.vy = - this.SPEED;
         }
         else if (keyPressed == "D") {
-            this.vx = 5;
+            this.vx = this.SPEED;
         }
         else if (keyPressed == "S") {
-            this.vy = 5
+            this.vy = this.SPEED
         }
         else if (keyPressed == "A") {
-            this.vx = -5;
+            this.vx = -this.SPEED;
         } else {
             this.vx = 0;
             this.vy = 0;
         }
     }
-
 }

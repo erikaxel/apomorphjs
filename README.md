@@ -1,0 +1,1 @@
+Javascript port of the game Apomorph, which was our 1.year student project back in 2001.

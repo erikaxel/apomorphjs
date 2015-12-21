@@ -1,14 +1,20 @@
 class GameObject {
     constructor(name) {
         this.name = name;
-        this.x = 0;
-        this.y = 0;
-
+        this.age = 0;
     }
 
-    //var bgImage = new Image();
-    //bgImage.onload = function () {
-    //bgReady = true;
-//};
-//    bgImage.src = "assets/1up_01.png";
+    update() {
+        this.age++;
+    }
+
+    static setupMovie(basename, frames) {
+        let textures = [];
+        for (var i = 0; i < frames; i++) {
+            let name = `${basename}_${Movie.zeropad(i+1,2)}.png`;
+            let texture = PIXI.Texture.fromImage(image_path(name));
+            textures.push(texture);
+        }
+        return new PIXI.extras.MovieClip(textures);
+    }
 }

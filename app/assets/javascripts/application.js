@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require howler
+//= require pixi
+//PIXI.utils._saidHello = true;
 //= require_tree .

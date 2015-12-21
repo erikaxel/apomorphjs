@@ -95,6 +95,7 @@ GEM
       railties (= 4.2.5)
       sprockets-rails
     rails-assets-howler (1.1.28)
+    rails-assets-pixi (3.0.8)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -165,6 +166,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.5)
   rails-assets-howler!
+  rails-assets-pixi!
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

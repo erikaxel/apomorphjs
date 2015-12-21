@@ -51,4 +51,5 @@ gem 'sprockets-es6'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-howler'
+  gem 'rails-assets-pixi'
 end

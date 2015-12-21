@@ -7,7 +7,7 @@ class OneUp extends GameObject {
         this.age = 0;
         this.width = 70;
         this.height = 70;
-        this.type = 'GAMEOBJECT_ENEMY';
+        this.type = 'GAMEOBJECT_POWERUP';
     }
 
     update(timeElapsed) {

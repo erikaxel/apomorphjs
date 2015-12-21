@@ -11,6 +11,9 @@ class Player extends GameObject {
         this.width = 100;
         this.height = 75;
 
+        this.health = 1;
+        this.damage = 50; // Damage done if we collide in other objects
+
         // MS between each shot
         this.SHOT_RATE = 100;
         this.timeSinceLastShot = 0;

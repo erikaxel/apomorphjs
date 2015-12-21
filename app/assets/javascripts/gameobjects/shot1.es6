@@ -9,10 +9,7 @@ class Shot1 extends GameObject {
         this.sprite.x = x;
         this.sprite.y = y;
         this.type = 'GAMEOBJECT_FRIENDLY_SHOT';
-    }
-
-    collide(otherObject) {
-        //console.log(`${this.name} collided with ${otherObject.name}. This method should be overriden by subclass`);
-        this.alive = false;
+        this.health = 1;
+        this.damage = 10;
     }
 }

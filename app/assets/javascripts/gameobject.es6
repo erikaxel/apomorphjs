@@ -23,7 +23,11 @@ class GameObject {
     }
 
     collide(otherObject) {
-        console.log(`${this.name} collided with ${otherObject.name}. This method should be overriden by subclass`);
+        console.log(`${this.name} collided with ${otherObject.name}.`);
+        this.health -= otherObject.damage;
+        if(this.health < 0) {
+            this.alive = false;
+        }
     }
 
     checkCollide(otherObject) {

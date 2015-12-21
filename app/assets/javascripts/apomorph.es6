@@ -3,13 +3,13 @@ class Apomorph {
         this.gameEngine = new GameEngine();
     }
     test() {
-        let oneup = new OneUp();
+        let enemy = new Ufo();
         let player = new Player(this.gameEngine);
 
-        oneup.sprite.position.x = 500;
-        oneup.sprite.position.y = 100;
+        enemy.sprite.position.x = 1000;
+        enemy.sprite.position.y = 100;
 
-        this.gameEngine.addGameObject(oneup);
+        this.gameEngine.addGameObject(enemy);
         this.gameEngine.addGameObject(player);
         this.gameEngine.main();
         // Use

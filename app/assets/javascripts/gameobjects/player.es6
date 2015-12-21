@@ -8,8 +8,8 @@ class Player extends GameObject {
         this.vy = 0;
 
         this.SPEED = 0.5;
-        this.SIZE_X = 100;
-        this.SIZE_Y = 75;
+        this.width = 100;
+        this.height = 75;
 
         // MS between each shot
         this.SHOT_RATE = 100;
@@ -19,6 +19,8 @@ class Player extends GameObject {
 
         PIXI.loader.add('shot1_01.png', image_path('shot1_01.png'));
         PIXI.loader.add('shot2_01.png', image_path('shot2_01.png'));
+
+        this.type = 'GAMEOBJECT_FRIENDLY';
     }
 
     update(timeElapsed) {
@@ -46,11 +48,11 @@ class Player extends GameObject {
         if(this.sprite.y < 0) {
             this.sprite.y = 0;
         }
-        if(this.sprite.x > window.innerWidth - this.SIZE_X) {
-            this.sprite.x = window.innerWidth - this.SIZE_X;
+        if(this.sprite.x > window.innerWidth - this.width) {
+            this.sprite.x = window.innerWidth - this.width;
         }
-        if(this.sprite.y > window.innerHeight - this.SIZE_Y) {
-            this.sprite.y = window.innerHeight - this.SIZE_Y;
+        if(this.sprite.y > window.innerHeight - this.height) {
+            this.sprite.y = window.innerHeight - this.height;
         }
     }
 
@@ -59,8 +61,7 @@ class Player extends GameObject {
         if(this.timeSinceLastShot > this.SHOT_RATE) {
             this.timeSinceLastShot = 0;
             // TODO: Level up weapons
-
-            this.gameEngine.addGameObject(new Shot1(this.sprite.x + this.SIZE_X/2+12, this.sprite.y+this.SIZE_Y/2));
+            this.gameEngine.addGameObject(new Shot1(this.sprite.x + this.width/2+12, this.sprite.y+this.height/2));
         }
     }
 }

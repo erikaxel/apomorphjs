@@ -6,7 +6,7 @@ class Apomorph {
         let oneup = new OneUp();
         let player = new Player(this.gameEngine);
 
-        oneup.sprite.position.x = 100;
+        oneup.sprite.position.x = 500;
         oneup.sprite.position.y = 100;
 
         this.gameEngine.addGameObject(oneup);

@@ -5,6 +5,9 @@ class OneUp extends GameObject {
         this.sprite.play();
         this.sprite.animationSpeed = 0.25;
         this.age = 0;
+        this.width = 70;
+        this.height = 70;
+        this.type = 'GAMEOBJECT_ENEMY';
     }
 
     update(timeElapsed) {

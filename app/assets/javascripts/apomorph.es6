@@ -29,10 +29,13 @@ class Apomorph {
 
     test() {
         let oneup = new OneUp();
+        let player = new Player();
+
         oneup.sprite.position.x = 100;
         oneup.sprite.position.y = 100;
 
         this.addGameObject(oneup);
+        this.addGameObject(player);
         this.main();
         // Use
         // http://www.conversion-tool.com/midi
